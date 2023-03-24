@@ -15,14 +15,14 @@ class Group9{
     System.out.println("For help press 3");
     System.out.println("For signing up press 4");
   }
-  public void input()
+  public void inputAdmin()
   {
     Scanner scan = new Scanner(System.in);
     System.out.println("How many members do you want to input in the team ");
     int a = scan.nextInt();
     int s[] = new int[a];
   }
-  public void member()
+  public void inputMember()
   {
     Scanner scan = new Scanner(System.in);
     String password = "Wsegg35%j8";

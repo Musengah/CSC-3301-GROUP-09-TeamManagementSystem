@@ -1,6 +1,6 @@
 import java.util.Scanner;
-class Group9
-{
+class Group9{
+
   public static void main(String[] args) 
   {
     l

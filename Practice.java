@@ -21,12 +21,14 @@ class GroupNine
         int user_option = scan.nextInt();
         switch (user_option){
             case 1:
-                break;
+                System.out.println("admin")
+               break;
             case 2:
+                System.out.println("normal member")
                 break;
             case 3:
-                System.out.println("If you enter 1 you'll login as an admin " +
-                        "If you enter 2 you'll login as a normal member");
+                System.out.println("none of the above");
+              
         }
         String passwords[] = {"123","135","246"};
         for (String password:passwords

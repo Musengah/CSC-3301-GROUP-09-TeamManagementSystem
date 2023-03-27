@@ -28,23 +28,26 @@ class GroupNine
                 System.out.println("If you enter 1 you'll login as an admin " +
                         "If you enter 2 you'll login as a normal member");
         }
-        String password = "1234";
-        System.out.println("What is your username ");
-        String user = scan.nextLine();
-        System.out.println("What is your password ");
-        String s = scan.next();
-        int i = 3;
-        while (i>0)
-        {
-            if (Objects.equals(s, password))
+        String passwords[] = {"123","135","246"};
+        for (String password:passwords
+             ) {
+            System.out.println("What is your username ");
+            String user = scan.nextLine();
+            System.out.println("What is your password ");
+            String s = scan.next();
+            int i = 3;
+            while (i>0)
             {
-                System.out.println("Welcome team member "+s);
-                i =-i;
-            }
-            else
-            {
-                System.out.println("Try again");
-                i =-1;
+                if (Objects.equals(s, password))
+                {
+                    System.out.println("Welcome back "+s);
+                    i =-i;
+                }
+                else
+                {
+                    System.out.println("Try again");
+                    i =-1;
+                }
             }
         }
     }

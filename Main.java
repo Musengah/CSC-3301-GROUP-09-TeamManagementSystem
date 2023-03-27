@@ -46,20 +46,23 @@ public class Main {
 
         switch (userOption) {
             case 1:
-                
+                System.out.println("This is an Admin.");
                 break;
             case 2:
-
+                System.out.println("This is a member.");
                 break;
             case 3:
-
+                System.out.println("This is the signup form.");
                 break;
             case 4:
-
+                System.out.println("This is the help menu.");
                 break;
             default:
 
                 break;
         }
+
+        // close input to avoid resource leak
+        input.close();
     }
 }

@@ -12,7 +12,22 @@ class GroupNine
     {
         System.out.println("Welcome user");
         System.out.println();
+        System.out.println();
+        System.out.println("For admin login press 1");
+        System.out.println("For normal member login press 2");
+        System.out.println("For help press 3");
+        System.out.println("For signing up press 4");
         Scanner scan = new Scanner(System.in);
+        int user_option = scan.nextInt();
+        switch (user_option){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                System.out.println("If you enter 1 you'll login as an admin " +
+                        "If you enter 2 you'll login as a normal member");
+        }
         String password = "1234";
         System.out.println("What is your username ");
         String user = scan.nextLine();
@@ -32,11 +47,6 @@ class GroupNine
                 i =-1;
             }
         }
-        System.out.println();
-        System.out.println("For admin login press 1");
-        System.out.println("For normal member login press 2");
-        System.out.println("For help press 3");
-        System.out.println("For signing up press 4");
     }
     public static void input()
     {

@@ -20,7 +20,10 @@ public class Main {
         // get what the user wants to do
         while (flag) {
             System.out.println("Hello there, Welcome!");
-            System.out.println("Press 1, 2, 3, 4 for admin, member, sign up or help respectively:");
+            System.out.println("Press 1 for admin");
+            System.out.println("enter 2 for members");
+            System.out.println("enter 3 for sign up");
+            System.out.println("enter 4 for help or customer care ");
             userOption = input.nextInt();
 
             if (userOption != 0) {

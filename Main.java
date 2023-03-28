@@ -268,7 +268,7 @@ public class Main {
                 System.out.println("Welcome Member5");
             }else{
                 System.out.println("Incorrect pin\n Start again");
-                member();
+                System.exit(0);
             }
             break;
             default:

@@ -21,10 +21,10 @@ class GroupNine
         int user_option = scan.nextInt();
         switch (user_option){
             case 1:
-                System.out.println("admin")
+                System.out.println("admin");
                break;
             case 2:
-                System.out.println("normal member")
+                System.out.println("normal member");
                 break;
             case 3:
                 System.out.println("none of the above");

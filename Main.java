@@ -1,59 +1,66 @@
-
+// import some useful libraries
 import java.util.Scanner;
 
 public class Main {
-    
+    // this is the main method that runs when the project is opened
     public static void main(String[] args) {
-        welcome();
+        login(welcome());
     }
 
-    //Just the base of the project.  
-
-    //method that has the login information
-    
-    public static void welcome() {
-       
+    // method to welcome the user and recognize their type of privillage
+    public static int welcome() {
+        // initialize the scanner object and some useful variables
         Scanner input = new Scanner(System.in);
         boolean flag;
         int counter = 0;
         int userOption = 0;
         
-        System.out.println("Hello there, Welcome!\n Choose one option\n 1. Admin\n 2. Member\n 3. Help");
+        System.out.print("Hello there, Welcome!\n Choose one option to login:\n 1. Admin\n 2. Member\n 3. Help\n Whats your choice? ");
         
-        do{
-            if(input.hasNextInt()){
+        // check if user has entered a valid option otherwise give them 3 attempts
+        do {
+            if (input.hasNextInt()) {
                 userOption = input.nextInt();
                 flag = true;
-            }else{
-                System.out.print("I do not understand you \n Try again:  ");
+            } else {
                 flag = false;
-                input.next();
                 counter++;
-                if(counter == 2){
-                    System.out.println("Too many attemps, Try again next time");
+
+                // check if the user has reached the 3 attempts
+                if (counter == 3) {
+                    System.out.println("Too many attemps, Try again later!");
                     System.exit(0);
+                } else {
+                    System.out.print("You entered an invalid option! Try again: ");
+                    input.next();
                 }
             }
-        }while(!(flag));
-         switch(userOption){
-            case 1:
-            admin();
-            break;
-            case 2:
-            member();
-            break;
-            case 3:
-            System.out.println("Help");
-            break;
-            default:
-            System.out.println("You entered an option that does exist ");
-            System.out.println();
-            System.out.println("Bye");
-            System.exit(0);
-        }
+        } while (!(flag));
         
+        // return user option
+        return userOption;
     }
-    // Method that has the log in details for the member
+
+    // method to handle user login after knowing their privillage type from welcome()
+    public static void login(int userOption) {
+        // check the type of user trying to login and call the appropriate login method
+        switch(userOption){
+            case 1:
+                admin();
+                break;
+            case 2:
+                member();
+                break;
+            case 3:
+                System.out.println("Help");
+                break;
+            default:
+                System.out.println("You entered an option that does exist! Try again later...");
+                System.exit(0);
+        }
+    }
+
+    // Method that has the login algorithm for the admin
     public static void admin() {
         Scanner input = new Scanner(System.in);
         String username = "admin";
@@ -68,41 +75,43 @@ public class Main {
         
         switch(userOption2){
             case "admin":
-            System.out.print("Enter your pin: ");
-            do{
-                if(input.hasNextInt()){
-                    userOption1 = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    counter++;
-                if(counter == 3){
-                    System.out.println("Too many attemps, Try again next time");
+                System.out.print("Enter your pin: ");
+                do {
+                    if (input.hasNextInt()) {
+                        userOption1 = input.nextInt();
+                        flag = true;
+                    } else {
+                        System.out.print("I do not understand you \n Try again:  ");
+                        flag = false;
+                        input.next();
+                        counter++;
+                        
+                        if (counter == 3) {
+                            System.out.println("Too many attemps, Try again next time");
+                            System.exit(0);
+                        }
+                    }
+                } while (!(flag));
+
+                if (userOption1 == 1234) {
+                    System.out.println("Welcome ADMIN\n Some code is coming here :)");
+                } else {
+                    System.out.println("Pin was incorrect\n Try again next time");
                     System.exit(0);
                 }
-                }
-            }while(!(flag));
-            if(userOption1 == 1234){
-                System.out.println("Welcome ADMIN\n Some code is coming here :)");
-                //
-            }else{
-                System.out.println("Pin was incorrect\n Try again next time");
-                System.exit(0);
-            }
-            break;
+                
+                break;
             case "":
-            System.out.println("Password is incorrect\n Password is incorrect");
-            System.exit(0);
-            break;
+                System.out.println("Password is incorrect\n Password is incorrect");
+                System.exit(0);
+                break;
             default:
-            System.out.println(" incorrect username\n Try again next time ");
-            System.exit(0);
-            
+                System.out.println(" incorrect username\n Try again next time ");
+                System.exit(0);
         }
                 
     }
+
     public static void close() {
         System.out.println();
     }

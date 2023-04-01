@@ -4,13 +4,17 @@ import java.util.Scanner;
 public class Main {
     // this is the main method that runs when the project is opened
     public static void main(String[] args) {
-        login(welcome());
+        // instantiate two scanner objects, call some useful methods and close the scanners
+        Scanner inputOne = new Scanner(System.in);
+        Scanner inputTwo = new Scanner(System.in);
+        login(welcome(inputOne), inputTwo);
+        inputOne.close();
+        inputTwo.close();
     }
 
     // method to welcome the user and recognize their type of privillage
-    public static int welcome() {
-        // initialize the scanner object and some useful variables
-        Scanner input = new Scanner(System.in);
+    public static int welcome(Scanner input) {
+        // initialize some useful variables
         boolean flag;
         int counter = 0;
         int userOption = 0;
@@ -42,14 +46,22 @@ public class Main {
     }
 
     // method to handle user login after knowing their privillage type from welcome()
-    public static void login(int userOption) {
+    public static void login(int userOption, Scanner input) {
         // check the type of user trying to login and call the appropriate login method
-        switch(userOption){
+        switch(userOption) {
             case 1:
-                admin();
+                // initialize admin username and pin
+                String[] adminUsername = {"Admin"};
+                int[] adminPin = {1234};
+
+                userLogin(input, adminUsername, adminPin);
                 break;
             case 2:
-                member();
+                // initialize usernames and their pins (Could be improved using Polymorphism)
+                String[] memberUsernames = {"Blessings", "Musengah", "Cossam", "Chela", "Mwamba"};
+                int[] memberPins = {1234, 1234, 1234, 1234, 1234};
+
+                userLogin(input, memberUsernames, memberPins);
                 break;
             case 3:
                 System.out.println("Help");
@@ -60,231 +72,70 @@ public class Main {
         }
     }
 
-    // Method that has the login algorithm for the admin
-    public static void admin() {
-        Scanner input = new Scanner(System.in);
-        String username = "admin";
-        int password = 1234;
+    // Method for the user login algorithm
+    public static void userLogin(Scanner input, String[] usernames, int[] passwords) {
+        // initialize some useful variables
         boolean flag;
         int userOption1 = 0;
         String userOption2 = "";
         int counter = 0;
+        boolean userExists = false;
+        int totalUsernames = usernames.length;
 
+        // ask the user to enter their username
         System.out.print("Enter your username: ");
-        userOption2 = input.nextLine().toLowerCase();
+        userOption2 += input.nextLine();
         
-        switch(userOption2){
-            case "admin":
+        for (int i = 0; i < totalUsernames; i++) {
+            // check if the user entered a valid username, if true ask for their pin
+            if (userOption2.equals(usernames[i])) {
                 System.out.print("Enter your pin: ");
+                
+                // check if they have entered a valid pin (int) 
                 do {
                     if (input.hasNextInt()) {
                         userOption1 = input.nextInt();
                         flag = true;
                     } else {
-                        System.out.print("I do not understand you \n Try again:  ");
                         flag = false;
-                        input.next();
                         counter++;
                         
+                        // check if the user has exhausted the 3 attempts
                         if (counter == 3) {
                             System.out.println("Too many attemps, Try again next time");
                             System.exit(0);
+                        } else {
+                            System.out.print("Your entered an invalid pin! Try again: ");
+                            input.next();
                         }
                     }
                 } while (!(flag));
 
-                if (userOption1 == 1234) {
-                    System.out.println("Welcome ADMIN\n Some code is coming here :)");
+                // check if the entered password matches with the one stored
+                if (userOption1 == passwords[i]) {
+                    System.out.printf("Welcome %s :)", usernames[i]);
                 } else {
-                    System.out.println("Pin was incorrect\n Try again next time");
+                    System.out.println("The pin you entered is incorrect! Try again later...");
                     System.exit(0);
                 }
+
+                // check user existance in database
+                userExists = true;
                 
-                break;
-            case "":
-                System.out.println("Password is incorrect\n Password is incorrect");
+            } else if (userOption2.equals("")) { 
+                System.out.println("Invalid username! Try again later...");
                 System.exit(0);
-                break;
-            default:
-                System.out.println(" incorrect username\n Try again next time ");
-                System.exit(0);
+            } else {
+                
+            }
         }
-                
-    }
 
-    public static void close() {
-        System.out.println();
-    }
-
-    public static void member() {
-        Scanner input  = new Scanner(System.in);
-        boolean flag;
-        int counter = 0;
-        //member usernames
-        String member = "Member";
-        String member1 = "Member1";
-        String member2 = "Member2";
-        String member3 = "Member3";
-        String member4 = "Member4";
-        String member5 = "Member5";
-        String userInput = "";
-        //member pins
-        int pin = 0000;
-        int pin1 = 1111;
-        int pin2= 2222;
-        int pin3 = 3333;
-        int pin4 = 4444;
-        int pin5 = 5555;
-        int password = 0;
-
-
-        System.out.print("Enter your user name: ");
-        userInput = input.nextLine().toLowerCase();
-
-        switch(userInput){
-            case "member":
-            System.out.print("Enter your pin member: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin){
-                System.out.println("Welcome Member");
-            }else{
-                System.out.println("Incorrect pin\n Try again next time");
-                System.exit(0);
-            }
-            break;
-            case "member1":
-            System.out.print("Enter your pin member: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin1){
-                System.out.println("Welcome Member");
-            }else{
-                System.out.println("Incorrect pin\n Try again next time");
-                System.exit(0);
-            }
-            break;
-            case "member2":
-            System.out.print("Enter your pin member2: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin2){
-                System.out.println("Welcome Member2");
-            }else{
-                System.out.println("Incorrect pin\n Try again next time");
-                System.exit(0);
-            }
-            break;
-            case "member3":
-            System.out.print("Enter your pin member3: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin3){
-                System.out.println("Welcome Member3");
-            }else{
-                System.out.println("Incorrect pin\n Start again");
-                System.exit(0);
-            }
-            break;
-            case "member4":
-            System.out.print("Enter your pin member4: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin4){
-                System.out.println("Welcome Member4");
-            }else{
-                System.out.println("Incorrect pin\n Start again");
-                System.exit(0);
-            }
-            break;
-            case "member5":
-            System.out.print("Enter your pin member5: ");
-            do{
-                if(input.hasNextInt()){
-                    password = input.nextInt();
-                    flag = true;
-                }else{
-                    System.out.print("I do not understand you \n Try again:  ");
-                    flag = false;
-                    input.next();
-                    if(counter == 3){
-                        System.out.println("Too many attemps, Try again next time");
-                        System.exit(0);
-                    }
-                }
-            }while(!(flag));
-            if(password == pin5){
-                System.out.println("Welcome Member5");
-            }else{
-                System.out.println("Incorrect pin\n Start again");
-                System.exit(0);
-            }
-            break;
-            default:
-            System.out.println("Username does not exist\n try again");
+        // check if user exists, otherwise exit the program
+        if (!userExists) {
+            System.out.println("The username you entered does not exist! Try again later...");
             System.exit(0);
         }
-
+                
     }
 
 }

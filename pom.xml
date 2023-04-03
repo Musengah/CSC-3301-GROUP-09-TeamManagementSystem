@@ -1,5 +1,0 @@
-<dependancy>
-    <groupId>com.github.javaparser</groupId>
-    <artifactId>javaparser-symbol-solver-core</artifactId>
-    <version>LATEST</version>
-</dependancy>

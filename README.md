@@ -4,8 +4,10 @@
 * The members are only allowed to view members and tasks.
 Overall, the program serves as a basic example of how to implement a login system in Java.
 
-#Manager                                                       #Members:
- username: Manager                                              usernames: Chela, Musengah, Fidelis, Blessing, Cossam, Mwamba
-login password: 1234                                            login passwords: 1234
+# Manager                                                       
+* username: Manager
+* login password: 1234 
 
-
+# Members
+* usernames: Chela, Musengah, Blessing, Cossam, Mwamba
+* login passwords: 1234

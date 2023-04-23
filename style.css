@@ -1,0 +1,63 @@
+body {
+    text-align: center;
+    margin: 0;
+    font-family: 'Harmattan', sans-serif;
+}
+
+#app {
+    height: 768px;
+}
+
+#h1 {
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 20px;
+    margin-top: 0;
+    font-weight: 500;
+    letter-spacing: 4px;
+    font-style: oblique;
+    text-transform: uppercase;
+}
+
+#generate {
+    background-color: rgba(12, 32, 51, 0.963);
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+}
+
+#generate:hover {
+    background-color: rgba(12, 32, 51, 0.963);
+    opacity: 0.8;
+    color: #fff;
+    padding: 18px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: large;
+}
+
+#sentences p {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px 15%;
+    box-shadow: 1px 1px 1px 1px rgb(206, 204, 204);
+    padding: 30px;
+}
+
+footer {
+    background-color: #ccccccda;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+ul li {
+    text-align: left;
+    list-style-type: none;
+    font-weight: 500;
+}
